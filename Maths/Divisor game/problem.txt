@@ -42,3 +42,4 @@ Explanation 2:
  - Formula to find LCM of two numbers is: (A*B)/GCD(A,B)
  - Now we require all divisors below A, so we can iterate from LCM of B and C until it's less than A with multiple of LCM
  
+ 
