@@ -41,5 +41,3 @@ Explanation 2:
  - Here we require divisors of B, C less than A, so we can find LCM of B and C, with which B and C both will be divisible.
  - Formula to find LCM of two numbers is: (A*B)/GCD(A,B)
  - Now we require all divisors below A, so we can iterate from LCM of B and C until it's less than A with multiple of LCM
- 
- 
