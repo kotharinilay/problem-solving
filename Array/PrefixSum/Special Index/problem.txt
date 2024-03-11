@@ -1,0 +1,50 @@
+Problem Description:
+Given an array, arr[] of size N, the task is to find the count of array indices such that removing an element from these 
+indices makes the sum of even-indexed and odd-indexed array elements equal.
+
+
+Problem Constraints:
+1 <= N <= 10^5
+-10^5 <= A[i] <= 10^5
+Sum of all elements of A <= 10^9
+
+
+Example Input
+Input 1:
+A = [2, 1, 6, 4]
+
+Input 2:
+A = [1, 1, 1]
+
+
+Example Output
+Output 1:
+1
+
+Output 2:
+3
+
+
+Example Explanation
+Explanation 1:
+Removing arr[1] from the array modifies arr[] to { 2, 6, 4 } such that, arr[0] + arr[2] = arr[1]. 
+Therefore, the required output is 1. 
+
+Explanation 2:
+Removing arr[0] from the given array modifies arr[] to { 1, 1 } such that arr[0] = arr[1] 
+Removing arr[1] from the given array modifies arr[] to { 1, 1 } such that arr[0] = arr[1] 
+Removing arr[2] from the given array modifies arr[] to { 1, 1 } such that arr[0] = arr[1] 
+Therefore, the required output is 3.
+
+
+Solution:
+- Here we need to check sum of even and odd index by removing each element one by one, if for remaining array even and odd index
+sum is same or not.
+- As there is problem related to check sum for whole array, prefix sum can be solution here.
+- We can prepare even and odd prefix sum array, so that after eliminating each element one by one, we can check sum of even and 
+od index with help even and odd prefix sum
+- Catch here is, when we eliminate any index, all element's index after that element will be change (from even to odd and odd to
+even)
+- so after eliminating any index (i) sum of even elements = pf_even[i-1] + (pf_odd[n-1] - pf_odd[i])
+- similarly sum of odd elements = pf_odd[i-1] + (pf_even[n-1] - pf_even[i])
+- Edge case will be for index 0, in that we won't have pf_even[i-1] and pf_odd[i-1] for even and odd sum respectively.
