@@ -1,0 +1,55 @@
+Problem Description:
+You are given an integer array A of size N.
+You have to perform B operations. In one operation, you can remove either the leftmost or the rightmost element of the array A.
+Find and return the maximum possible sum of the B elements that were removed after the B operations.
+
+NOTE: Suppose B = 3, and array A contains 10 elements, then you can:
+Remove 3 elements from front and 0 elements from the back, OR
+Remove 2 elements from front and 1 element from the back, OR
+Remove 1 element from front and 2 elements from the back, OR
+Remove 0 elements from front and 3 elements from the back.
+
+
+Problem Constraints:
+1 <= N <= 10^5
+1 <= B <= N
+-10^3 <= A[i] <= 10^3
+
+
+Example Input
+Input 1:
+ A = [5, -2, 3 , 1, 2]
+ B = 3
+Input 2:
+ A = [ 2, 3, -1, 4, 2, 1 ]
+ B = 4
+
+
+Example Output
+Output 1:
+ 8
+
+Output 2:
+ 9
+
+
+Example Explanation
+Explanation 1:
+ Remove element 5 from front and element (1, 2) from back so we get 5 + 1 + 2 = 8
+
+Explanation 2:
+ Remove the first element and the last 3 elements. So we get 2 + 4 + 2 + 1 = 9
+
+
+Solution:
+- Here if we observe problem statement, we need max sum of subarray with total B elements all from front/back or mix of it
+- When we say mix of it: if B = 4 from front 1 and back 3, front 2 and back 2, front 3 and back 1 are options
+- Brute force approach is we will need nested loops: outer loop will B times, inner we will require 2 loops: incremental from 
+1 to B-1 elements and decremental from B-1 to 1 elements and maintain max sum.
+- Now instead of inner loops, we can generate prefix and postfix sum array, so that we can eliminate inner loops and can sum
+directly ith element from prefix sum and (B-i)th element from post fix sum and maintain max sum
+    - here ith element in prefix sum is sum till all elements till i (e.g. pf[0] first element, pf[1] sum of first 2 elements...)
+    - similarly in postfix sum if we want sum of last 2 elements take postfix[n-2]
+- So with help of prefix and postfix sum, we can find max sum of B elements by iterating loop B times and maintain max sum of
+pf[i] + postfix[n-B+1+i] (for this we need to generate postfix sum array from 0 to n-1 and reverse it).
+- If do not want to reverse we can maintain max sum by pf[i] + postfix[B - i - 2]
