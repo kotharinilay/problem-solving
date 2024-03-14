@@ -1,0 +1,49 @@
+Problem Description:
+Given an integer array A containing N distinct integers, you have to find all the leaders in array A. An element is a leader if 
+it is strictly greater than all the elements to its right side.
+NOTE: The rightmost element is always a leader.
+
+
+Problem Constraints:
+1 <= N <= 10^5
+1 <= A[i] <= 10^8
+
+
+Example Input
+Input 1:
+ A = [16, 17, 4, 3, 5, 2]
+
+Input 2:
+ A = [5, 4]
+
+
+Example Output
+Output 1:
+[17, 2, 5]
+
+Output 2:
+[5, 4]
+
+
+Example Explanation
+Explanation 1:
+ Element 17 is strictly greater than all the elements on the right side to it.
+ Element 2 is strictly greater than all the elements on the right side to it.
+ Element 5 is strictly greater than all the elements on the right side to it.
+ So we will return these three elements i.e [17, 2, 5], we can also return [2, 5, 17] or [5, 2, 17] or any other ordering.
+
+Explanation 2:
+ Element 5 is strictly greater than all the elements on the right side to it.
+ Element 4 is strictly greater than all the elements on the right side to it.
+ So we will return these two elements i.e [5, 4], we can also any other ordering.
+
+
+Solution:
+- Here we start iterating loop from last to first element
+- As for last element it will leader as there is no elements to its right side
+- we keep iterating left and maintain max number, and if current element is greater than max, then we can add it to ans array
+- e.g. [16, 17, 4, 3, 5, 2]
+    - 2 will be added to ans array and we keep 2 as max number till now, as its right most element, and we start iterating towards left
+    - now 5 is next number, which is greater than 2, so ideally all elements to its right are smaller than it and we can add it
+    to ans array and update max as 5.
+    - similarly we can iterate till first element and keep maintaining max element and add ith element to ans if its max till then.
