@@ -1,0 +1,42 @@
+Problem Description:
+Say you have an array, A, for which the ith element is the price of a given stock on day i.
+If you were only permitted to complete at most one transaction (ie, buy one and sell one share of the stock), design an 
+algorithm to find the maximum profit.
+Return the maximum possible profit.
+
+
+Problem Constraints:
+0 <= A.size() <= 700000
+1 <= A[i] <= 10^7
+
+
+Example Input
+Input 1:
+A = [1, 2]
+
+Input 2:
+A = [1, 4, 5, 2, 4]
+
+
+Example Output
+Output 1:
+1
+
+Output 2:
+4
+
+
+Example Explanation
+Explanation 1:
+Buy the stock on day 0, and sell it on day 1.
+
+Explanation 2:
+Buy the stock on day 0, and sell it on day 2.
+
+
+Solution:
+- Here we consider first elements as lowest price (and maintain it) and start checking difference (profit) with other days 
+and maintain max of them
+- If we find element (price) less than the element we are comparing with (initially first element), we will update it as lowest
+price and continue checking and maintaining max profit with further elements.
+- At end we can return max profit.
