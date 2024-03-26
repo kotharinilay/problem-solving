@@ -1,0 +1,43 @@
+Problem Description:
+Given a sorted array of integers A where every element appears twice except for one element which appears once, find and return this single element that appears only once.
+Elements which are appearing twice are adjacent to each other.
+NOTE: Users are expected to solve this in O(log(N)) time.
+
+
+Problem Constraints:
+1 <= |A| <= 100000
+1 <= A[i] <= 10^9
+
+
+Example Input
+Input 1:
+A = [1, 1, 7]
+
+Input 2:
+A = [2, 3, 3]
+
+
+Example Output
+Output 1:
+ 7
+
+Output 2:
+ 2
+
+
+Example Explanation
+Explanation 1:
+ 7 appears once
+
+Explanation 2:
+ 2 appears once
+
+
+Solution:
+- With linear complexity xor solution is there, here elements which are appearing twice are adjacent, with which we can think of binary search option.
+- here observation is until single element comes, first occurrence index of twice elements are even, and after single element odd
+- we can take mid element and check if mid -1 or mid +1 is same element, if no means its single element and we can return it
+if not we can find first occurrence of that element (mid -1 or mid itself), and if its index is even, we can discard left part and if odd we can discard right part
+here edge case are first or last element is single or array has only one element, which we covered in start.
+after edge case we keep search range from 1 to n-2, because while checking mid is single or not, we need to check mid - 1, mid + 1 elements, which can go out of bound 
+if we keep range from 0 to n-1.

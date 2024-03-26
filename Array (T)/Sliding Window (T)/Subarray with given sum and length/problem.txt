@@ -1,0 +1,51 @@
+Problem Description:
+Given an array A of length N. Also given are integers B and C.
+Return 1 if there exists a subarray with length B having sum C and 0 otherwise
+
+
+Problem Constraints:
+1 <= N <= 10^5
+1 <= A[i] <= 10^4
+1 <= B <= N
+1 <= C <= 10^9
+
+
+Example Input
+Input 1:
+A = [4, 3, 2, 6, 1]
+B = 3
+C = 11
+
+Input 2:
+A = [4, 2, 2, 5, 1]
+B = 4
+C = 6
+
+
+Example Output
+Output 1:
+1
+
+Output 2:
+0
+
+
+Example Explanation
+Explanation 1:
+The subarray [3, 2, 6] is of length 3 and sum 11.
+
+Explanation 2:
+There are no such subarray.
+
+
+Solution:
+- When we want to find something related to subarray and window size is fixed then sliding window technique can be useful
+- Here from given array, we need to find if there is any subarray with sum C exist or not and size of subarray is fixed which is B.
+- As here size of subarray is fixed (window size), we can think of sliding window.
+- For sliding window, first we need to create first window, then need to iterate till end and check for sum.
+- In sliding window technique, there will be two pointers (left and right) denoting starting and ending index of window.
+- First we will iterate till window size to create first window and sum each elements in window.
+- Now right pointer is at window size index and left pointer at 0 and sum of first B elements.
+- Now we will iterate till right pointer reaches to array length and move left and right pointers by 1.
+- At each move, we will add right pointer elements value to sum and subtract left pointer element, so that we can have sum of elements in window range.
+- if at any point of time, sum matches C, return 1, if whole iteration completed then return 0 from outside of the loop, as we didn't find any subarray with size B.
