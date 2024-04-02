@@ -1,0 +1,55 @@
+Problem Description:
+You are given an array of N integers, A1, A2 ,..., AN and an integer B. Return the of count of distinct numbers in all windows of size B.
+Formally, return an array of size N-B+1 where i'th element in this array contains number of distinct elements in sequence Ai, Ai+1 ,..., Ai+B-1.
+NOTE: if B > N, return an empty array.
+
+
+Problem Constraints:
+1 <= N <= 10^6
+1 <= A[i] <= 10^9
+
+
+Example Input
+Input 1:
+ A = [1, 2, 1, 3, 4, 3]
+ B = 3
+
+Input 2:
+ A = [1, 1, 2, 2]
+ B = 1
+
+
+Example Output
+Output 1:
+ [2, 3, 3, 2]
+
+Output 2:
+ [1, 1, 1, 1]
+
+
+Example Explanation
+Explanation 1:
+ A=[1, 2, 1, 3, 4, 3] and B = 3
+ All windows of size B are
+ [1, 2, 1]
+ [2, 1, 3]
+ [1, 3, 4]
+ [3, 4, 3]
+ So, we return an array [2, 3, 3, 2].
+
+Explanation 2:
+ Window size is 1, so the output array is [1, 1, 1, 1].
+
+
+Solution:
+- Here we need to find unique number of elements in fixed window size.
+- When in problem window size is fixed, we can think of sliding window.
+- Now in each window, we need unique elements, so we need to maintain frequency map of element in each window.
+- And when we move window, we need to add next element in frequency map (if exist then increase its frequency or add as frequency 1).
+- And we need to decrease frequency of (left - 1) pointer and if frequency become 0, we need to remove that element from map.
+- need to remove element because for unique elements we are going to use size of map for each each window
+- if we will have any number with 0 frequency that means that number is not exists in window, but we will get it in size of map, so we need to delete the element from map if frequency become 0
+- here we can not use hashset to maintain unique elements in window, because if array is [1,2,1,3,4,3] and window size 3
+for first window set will have 2 elements 1,2 so we will get 2 size which is right for 1st window, but when we move window
+we need to remove 1 (as we need to remove left - 1 element) and add right element (which is 3). now window is [2,1,3] and in set we will have 2,3 (as we removed 1)
+so we will get wrong size.
