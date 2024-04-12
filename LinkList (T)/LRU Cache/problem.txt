@@ -1,0 +1,36 @@
+Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.
+
+get(key) - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.
+set(key, value) - Set or insert the value if the key is not already present. When the cache reaches its capacity, it should invalidate the least recently used item before inserting the new item.
+The LRUCache will be initialized with an integer corresponding to its capacity. Capacity indicates the maximum number of unique keys it can hold at a time.
+
+Definition of "least recently used" : An access to an item is defined as a get or a set operation of the item. "Least recently used" item is the one with the oldest access time.
+
+NOTE: If you are using any global variables, make sure to clear them in the constructor.
+
+
+
+Solution:
+- Here we want get and set time complexity constant, so we need to think about data structure
+- for get and set we will require mainly 3 operations: search, insert, remove
+- if we pick Array: search key would take O(N), insert: O(1), remove: O(N)
+- linked list: search would take O(N), insert: O(1), remove: O(N)
+- hashmap: search would take O(1), insert and remove order cannot be maintained
+- LL + hashmap: search would take O(1) [into hashmap], insert: O(1) [by maintain tail node], remove: O(N)
+- doubly LL + hashmap: search would take O(1) [into hashmap], insert: O(1) [by maintain tail node], remove: O(1)
+- We would keep head and tail dummy nodes, so we can maintain and avoid edge cases while insert and remove in better way
+- we have prepared functions for insert node at last and remove node, which will help in setup set and get function
+- now for set mainly we have 2 cases: key want to set is already available or not
+    - if key is not available then we have two cases: 1. cache size is less than capacity. 2. cache size is equal to capacity.
+        - if cache size is less than capacity: we can create new node for key value and insert it at last. 
+        increase size of cache and add node in hashmap: key as key and node as value
+        - if cache size is equal to capacity: we will remove first node after head (which is LRU node), remove key from hashmap as we deleted node with this key
+        - and add new node at tail.
+    - if key is available:
+        - create new node with same key and new value.
+        - get key from hashmap and remove node which we get as value.
+        - add new node at tail.
+- for get 
+    - if key is not available in hashmap then return -1.
+    - if key is available then take its value from node.
+    - remove node and insert it at tail, because that node used, we need to move that at last (MRU)
